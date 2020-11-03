@@ -41,5 +41,23 @@ namespace CheckoutKata.Logic.Test.Unit
             //Then
             Assert.AreEqual(checkout.Items.Count, knownSKUs.Count());
         }
+        
+        [TestMethod]
+        [DataRow(new string[] { "A99", "B15", "C40" })]
+        [DataRow(new string[] { "A99", "A99" })]
+        public void GivenKnownSKUs_WhenTotalIsRead_ThenSumOfItemsUnitPriceIsReturned(IEnumerable<string> knownSKUs)
+        {
+            //Given
+            var checkout = new Logic.Checkout();
+            
+            //When
+            foreach (var knownSKU in knownSKUs)
+            {
+                checkout.Scan(knownSKU);
+            }
+            
+            //Then
+            Assert.AreEqual(checkout.TotalPrice, checkout.Items.Sum(x=> x.UnitPrice));
+        }
     }
 }

@@ -15,6 +15,7 @@ namespace CheckoutKata
                 {
                     Console.WriteLine($"{item.SKU}: {item.UnitPrice}");
                 }
+                Console.WriteLine($"Total Price: {checkout.TotalPrice}");
                 Console.Write("'Scan' SKU: ");
                 var sku = Console.ReadLine();
 

@@ -59,5 +59,59 @@ namespace CheckoutKata.Logic.Test.Unit
             //Then
             Assert.AreEqual(checkout.TotalPrice, checkout.Items.Sum(x=> x.UnitPrice));
         }
+        
+        [TestMethod]
+        public void GivenSpecialOfferSKUsB15A_WhenTotalIsRead_ThenSumOfItemsUnitPriceIsReturned()
+        {
+            //Given
+            var checkout = new Logic.Checkout();
+
+            var knownSKUs = new List<string> {"B15", "B15"};
+            
+            //When
+            foreach (var knownSKU in knownSKUs)
+            {
+                checkout.Scan(knownSKU);
+            }
+            
+            //Then
+            Assert.AreEqual(checkout.TotalPrice, 0.95m);
+        }
+        
+        [TestMethod]
+        public void GivenSpecialOfferSKUsB15Broken_WhenTotalIsRead_ThenSumOfItemsUnitPriceIsReturned()
+        {
+            //Given
+            var checkout = new Logic.Checkout();
+
+            var knownSKUs = new List<string> {"B15", "A99", "B15"};
+            
+            //When
+            foreach (var knownSKU in knownSKUs)
+            {
+                checkout.Scan(knownSKU);
+            }
+            
+            //Then
+            Assert.AreEqual(checkout.TotalPrice, 0.95m);
+        }
+
+        [TestMethod]
+        public void GivenSpecialOfferSKUsA99_WhenTotalIsRead_ThenSumOfItemsUnitPriceIsReturned()
+        {
+            //Given
+            var checkout = new Logic.Checkout();
+
+            var knownSKUs = new List<string> {"A99", "A99", "A99"};
+            
+            //When
+            foreach (var knownSKU in knownSKUs)
+            {
+                checkout.Scan(knownSKU);
+            }
+            
+            //Then
+            Assert.AreEqual(checkout.TotalPrice, 1.3m);
+        }
     }
 }

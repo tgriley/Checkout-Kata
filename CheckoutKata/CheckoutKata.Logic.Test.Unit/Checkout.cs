@@ -74,8 +74,10 @@ namespace CheckoutKata.Logic.Test.Unit
                 checkout.Scan(knownSKU);
             }
             
+            checkout.ProcessSpecialOffers();
+            
             //Then
-            Assert.AreEqual(checkout.TotalPrice, 0.95m);
+            Assert.AreEqual(checkout.TotalPrice, 0.45m);
         }
         
         [TestMethod]
@@ -91,6 +93,8 @@ namespace CheckoutKata.Logic.Test.Unit
             {
                 checkout.Scan(knownSKU);
             }
+            
+            checkout.ProcessSpecialOffers();
             
             //Then
             Assert.AreEqual(checkout.TotalPrice, 0.95m);
@@ -109,6 +113,8 @@ namespace CheckoutKata.Logic.Test.Unit
             {
                 checkout.Scan(knownSKU);
             }
+
+            checkout.ProcessSpecialOffers();
             
             //Then
             Assert.AreEqual(checkout.TotalPrice, 1.3m);

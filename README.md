@@ -1,1 +1,1 @@
-# Sorted Checkout Kata
+# Checkout Kata
